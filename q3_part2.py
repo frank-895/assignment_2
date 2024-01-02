@@ -1,4 +1,3 @@
-# THIS CODE IS THE SECOND PART OF QUESTION 3
 # The code here is the error fixed version of the decrypted text generated in part 1
 
 global_variable = 100
