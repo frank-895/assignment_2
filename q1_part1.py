@@ -11,5 +11,6 @@ with open('new_file.txt', 'w') as file1:
             next(csvreader) # pointer points to first row
 
             for row in csvreader: # iterate through each row in file
-                file1.write(row[2]) # write text in column 2 to new file
-                file1.write("\n")
+                for column in row:
+                    file1.write(column) # write text in each column to new file
+                    file1.write("\n")
