@@ -1,5 +1,6 @@
 import spacy
 import scispacy
+from transformers import AutoTokenizer
 
 model1 = spacy.load("en_core_sci_sm")
 model2 = spacy.load("en_ner_bc5cdr_md")
