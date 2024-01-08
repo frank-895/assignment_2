@@ -1,6 +1,6 @@
 # This program takes a file of text and uses AutoTokenizer to find top 30 occuring words and their counts
 
-from transformers import AutoTokenizer
+from transformers import *
 
 def count_occ(lis):
     "Returns dictionary that counts how occurences of each number in argument lis"
@@ -12,13 +12,6 @@ def count_occ(lis):
             d[str(number)] = 1
     return d
 
-def remove_nonwords(s):
-  "Removes any words from list that contain non-letters"
-  for word in s:
-    if word.isalpha() == False:
-      s.remove(word)
-  return s
-
 with open('new_file.txt', 'r') as file: # read in file
     long_string = file.read() # file saved as single string
 
@@ -28,22 +21,21 @@ with open('new_file.txt', 'r') as file: # read in file
     long_string.lower() # makes text all lowercase
     long_string.strip() # removes unneccessary newlines
     list_words = long_string.split() # converts string to list
-    list_words = remove_nonwords(list_words) # removes nonwords
 
     # DECLARE VARIABLES
     list_tokens = [] # tokens added to this list
     length = len(list_words) # number of words
-    split = 100000 # the number of pieces the text will processed in 
+    split = 500000 # the number of pieces the text will processed in
 
     # PROCESS TEXT
     for i in range(0, split): # split the text into processable chunks for AutoTokenizer
         current_section = list_words[i*(length//split) : i*(length//split) + (length//split)]
-        encoded = tokenizer.encode(' '.join(current_section)) # assigns text unique integer number        
+        encoded = tokenizer.encode(' '.join(current_section)) # assigns text unique integer number
         for j in encoded:
             list_tokens.append(j) # add tokens to list
-    
-    current_section = long_string[(split - 1) * (length//split):] # process any text cut off in last section
-    encoded = tokenizer.encode(' '.join(current_section)) # assigns text unique integer number        
+
+    current_section = list_words[(split - 1) * (length//split):length] # process any text cut off in last section
+    encoded = tokenizer.encode(' '.join(current_section)) # assigns text unique integer number
     for i in encoded:
       list_tokens.append(i)  # add tokens to list
 
@@ -55,6 +47,6 @@ with open('new_file.txt', 'r') as file: # read in file
     while count < 30:
         new_word = tokenizer.decode(int(top_words[i]))
         if new_word.isalpha() == True: # only display words - not any other variables created by AutoTokenizer
-          print(new_word + "  " + str(all_words[top_words[i]])) # print word and its occurence count
+          print(new_word + "  " + str(all_tokens[top_words[i]])) # print word and its occurence count
           count += 1
         i += 1
