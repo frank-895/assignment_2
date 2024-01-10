@@ -33,7 +33,6 @@ with open('new_file.txt', 'r') as file:
     long_string.strip() # removes unneccessary newlines
     list_words = long_string.split() # converts string to list
     list_words = remove_nonwords(list_words)
-    print("preprocessing complete")
 
     # DECLARE VARIABLES
     length = len(list_words) # number of words
@@ -50,13 +49,9 @@ with open('new_file.txt', 'r') as file:
         
       temp = model1(' '.join(current_section)) # initially use en_core_sci_sm
       extract(temp, word_list_1)
-      print("extraction complete 1")
 
       temp = model2(' '.join(current_section))  # now use en_ner_bc5cdr_md
       extract(temp, word_list_2)
-      print("extraction complete 1")
 
-print(len(word_list_1))
-print(word_list_1)
-print(len(word_list_2))
-print(word_list_2)
+print("en_core_sci_sm extracted " + str(len(word_list_1)) + " words")
+print("en_ner_bc5cdr_md extracted " + str(len(word_list_2)) + " words")
