@@ -1,4 +1,4 @@
-# This program extracts the text from four csv files and saves to .txt file named new_file.txt
+# This program extracts the text from four csv files and saves to text file named new_file.txt
 
 import csv # library to open .csv file
 

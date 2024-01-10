@@ -2,7 +2,6 @@
 # pixel values of the altered image.
 
 import time
-import PIL
 from PIL import Image
 
 image = Image.open("chapter1.jpg")

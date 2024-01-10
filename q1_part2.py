@@ -3,17 +3,22 @@
 import csv # to write new csv file
 
 def remove_nonwords(s):
+    "Removes nonwords from list s"
+    new_list = []
     for word in s:
-        if word.isalpha == False:
-            s.remove(word)
-    return s
+        if word.isalpha() == True:
+            new_list.append(word)
+    return new_list
 
 def count_occ(s):
     "Returns dictionary that counts how occurences of each word in argument string s"
+    
+    # PREPROCESSING
     s.lower()
-    s = s.strip() # remove excess characters
+    s = s.strip() # remove excess newlines
     words = s.split() # split into list of words
     words = remove_nonwords(words)
+
     d = {} # dictionary to store words and counts
     for word in words:
         if word in d: # add to counter if item already included
